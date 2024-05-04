@@ -46,6 +46,6 @@ const input_password = ref("");
       "
       >{{ input_password.length > 3 ? $props.success : $props.denied }}</span
     >
-    <span v-if="$props.depricated" :style="{color:'#bf4242'}">depricated!</span>
+    <span v-if="$props.depricated" :style="{color:'#bf4242'}">already in use!</span>
   </div>
 </template>
