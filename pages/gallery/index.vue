@@ -4,8 +4,6 @@
 
     const images = ref(data);
 
-    
-
     console.log(images.value);
 
    const {prettyText} = useMyUtils();
