@@ -17,7 +17,16 @@ interface ResponseData {
 export default function useAxiosssss(port: string | number) {
   //   const url_to_vercel =
   // "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app";
-  const url_to_vercel = `http://localhost:${port}`;
+
+  const PRODUCTION_MODE = process.env.PRODUCTION_MODE;
+
+  const url =
+    PRODUCTION_MODE && PRODUCTION_MODE === "true"
+      ? "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
+      : `http://localhost:${port}`;
+
+  console.log("PRODUCTION_MODE", PRODUCTION_MODE);
+
   const responsedData = ref<ResponseData | null>(null);
   const errorSubject = ref<string | null>(null);
   const responseMessage = ref<string | null>(null);
@@ -35,7 +44,7 @@ export default function useAxiosssss(port: string | number) {
 
     try {
       const response = await axios.post<ResponseData>(
-        /* url */ url_to_vercel + endpoint,
+        url + endpoint,
         data,
         options,
       );
