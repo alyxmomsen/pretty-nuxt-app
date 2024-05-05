@@ -8,9 +8,16 @@ isAuth();
 
 <template>
   <h1>default layout</h1>
-  <MainMenu :is-auth="!!ifAuth" />
+  <MainMenu :is-auth="!!ifAuth">
+    <template v-slot:foobar>
+      <div>bar baz</div>
+    </template>
+    <template v-slot:barfoo>
+      <div>baz bar</div>
+    </template>
+  </MainMenu>
   <div>
   </div>
-  <slot></slot>
+  <slot name="default"></slot>
   <pre></pre>
 </template>
