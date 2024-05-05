@@ -25,7 +25,7 @@ export default function useAxiosssss(port: string | number) {
       ? "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
       : `http://localhost:${port}`;
 
-  console.log("PRODUCTION_MODE", PRODUCTION_MODE);
+  console.log("PRODUCTION_MODE", PRODUCTION_MODE , url);
 
   const responsedData = ref<ResponseData | null>(null);
   const errorSubject = ref<string | null>(null);
