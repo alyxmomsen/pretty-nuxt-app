@@ -7,8 +7,9 @@ body {
 
 .regular-wrapper {
   border: 1px solid #33465a;
-  border-radius: 9px;
+  border-radius: 3px;
   background-color: #2e3d4b;
+  padding: 9px;
 }
 
 /* ============================= */
@@ -76,4 +77,40 @@ form input {
 
 form button[type="submit"] {
   display: none;
+}
+
+/* ============================= */
+/* flex-box styles */
+
+.flex {
+  display: flex;
+  padding: 9px;
+  gap:9px ;
+  align-items: start;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.flex-center-x {
+  justify-content: center;
+}
+
+.flex-center-y {
+  align-items: center;
+}
+
+.flex-center-all {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+
+}
+
+.flex-row {
+  flex-direction: row;
 }

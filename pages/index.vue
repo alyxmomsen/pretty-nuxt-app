@@ -9,6 +9,8 @@ definePageMeta({
 <template>
   <div>
     <h1>index</h1>
-    <div></div>
+    <div>
+      
+    </div>
   </div>
 </template>
