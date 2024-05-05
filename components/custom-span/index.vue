@@ -18,10 +18,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  depricated:{
-    type:Boolean,
-    required:true ,
-  }
+  forbidden: {
+    type: Boolean,
+    required: true,
+  },
+  forbidden_mesage: {
+    type: String,
+    required: true,
+  },
 });
 
 const input_password = ref("");
@@ -29,7 +33,7 @@ const input_password = ref("");
 
 <template>
   <div class="input-wrapper">
-    <input 
+    <input
       @input="
         (e: InputEvent) =>
           $emit('update', (e.currentTarget as HTMLInputElement).value)
@@ -46,6 +50,8 @@ const input_password = ref("");
       "
       >{{ input_password.length > 3 ? $props.success : $props.denied }}</span
     >
-    <span v-if="$props.depricated" :style="{color:'#bf4242'}">already in use!</span>
+    <span v-if="$props.forbidden" :style="{ color: '#bf4242' }">{{
+      $props.forbidden_mesage
+    }}</span>
   </div>
 </template>

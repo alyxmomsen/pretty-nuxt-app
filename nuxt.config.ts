@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   css: [`~/assets/styles/css/main.css`],
 });
 
-
 // export default defineNuxtConfig({
 //   devtools: { enabled: true },
 //   css: [`~/assets/styles/css/main.css`],

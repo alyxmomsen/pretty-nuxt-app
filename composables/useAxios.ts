@@ -1,80 +1,118 @@
-import axios, { AxiosError } from "axios"
-
+import axios, { AxiosError } from "axios";
 
 interface ResponseData {
-    status:boolean ,
-    message:string ,
-    payload:null|{subject:string}
+  status: boolean;
+  message: string;
+  payload: null | {
+    error_subject: string | null;
+    content: { type: string; data: any };
+  };
 }
 
 /**
- * 
+ *
  * @param port
- * @returns 
+ * @returns
  */
-export default function useAxiosssss (port:string|number) {
+export default function useAxiosssss(port: string | number) {
+  //   const url_to_vercel =
+  // "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app";
+  const url_to_vercel = `http://localhost:${port}`;
+  const responsedData = ref<ResponseData | null>(null);
+  const errorSubject = ref<string | null>(null);
+  const responseMessage = ref<string | null>(null);
+  const custom_response_status = ref<boolean | null>(null);
 
-    const url_to_vercel = 'https://epress-rest-server-ror-pretty-nuxt-app.vercel.app' ;
-    // const url = `http://localhost:${port}` ;
-    const responsedData = ref<ResponseData|null>(null);
-    const errorSubject = ref<string|null>(null);
-    const responseMessage = ref<string|null>(null);
-    const custom_response_status = ref<boolean|null>(null);
+  async function send_post_request(
+    endpoint: string,
+    data: { username?: string; email: string; password: string },
+  ) {
+    errorSubject.value = null;
+    responsedData.value = null;
+    responseMessage.value = null;
 
-    async function send_post_request (endpoint:string ,  data:{username:string , email:string , password:string}) {
+    const options = {};
 
-        errorSubject.value = null ;
-        responsedData.value = null ;
-        responseMessage.value = null ; 
+    try {
+      const response = await axios.post<ResponseData>(
+        /* url */ url_to_vercel + endpoint,
+        data,
+        options,
+      );
+      //   console.log(response);
 
-        const options = {
-            
+      responsedData.value = response.data;
+      responseMessage.value = response.data.message;
+      custom_response_status.value = response.data.status;
+    } catch (err) {
+      const error = err as AxiosError;
+
+      //   console.log("it s error" , err);
+
+      if (error.response) {
+        // console.log('error.response' ,error.response);
+        const data = error.response.data as {
+          status: boolean;
+          message: string;
+          payload: null | {
+            subject: string | null;
+            content: { type: string; data: any };
+          };
+        };
+
+        // console.log('data' , data);
+
+        if (data) {
+          const payload = data.payload;
+
+          if (payload) {
+            console.log("error subject sat");
+            errorSubject.value = payload.subject;
+          }
+
+          responsedData.value = {
+            message: data.message,
+            status: data.status,
+            payload: data.payload
+              ? {
+                  content: data.payload.content,
+                  error_subject: data.payload.subject,
+                }
+              : null,
+          };
+          responseMessage.value = data.message;
+          custom_response_status.value = data.status;
         }
+      }
+    }
 
-        try {
+    // if response contain the jwt token, then save this into LocalStorage
 
-            const response = await axios.post<ResponseData>(/* url */url_to_vercel + endpoint , data , options );
-            console.log(response);
+    if (responsedData.value) {
+      const respnsed_data = responsedData.value;
 
-            responsedData.value = response.data;
-            responseMessage.value = response.data.message ;
-            custom_response_status.value = response.data.status ;
+      if (respnsed_data) {
+        if (respnsed_data.status) {
+          if (respnsed_data.payload) {
+            if (respnsed_data.payload.content.type === "access_token") {
+              localStorage.setItem(
+                "my_access_token",
+                respnsed_data.payload.content.data,
+              );
 
-            
-        }
-        catch (err) {
-
-            const error = err as AxiosError ; 
-
-            console.log('it s error');
-
-            if(error.response) {
-
-                const data = error.response.data as {status:boolean , message:string , payload:null|{subject:string}}
-
-                if(data){
-                    const payload = data.payload ;
-
-                    if(payload) {
-
-                        console.log('error subject sat');
-                        errorSubject.value = payload.subject  ;
-                    }
-
-                    responseMessage.value = data.message ;
-                    custom_response_status.value = data.status ;               
-                 }
+              console.log("local storage", localStorage);
             }
-
-
+          }
         }
+      }
     }
+  }
 
-    return {
-        data: responsedData ,
-        errorSubject ,
-        responseMessage ,
-        custom_response_status ,
-        send_post_request ,
-    }
+  return {
+    data: responsedData,
+    errorSubject,
+    responseMessage,
+    custom_response_status,
+    send_post_request,
+  };
 }

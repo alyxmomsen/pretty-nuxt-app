@@ -5,7 +5,6 @@ body {
 
 /* ================================ */
 
-
 .regular-wrapper {
   border: 1px solid #33465a;
   border-radius: 9px;
@@ -15,12 +14,10 @@ body {
 /* ============================= */
 
 .main-menu {
-
   display: flex;
   gap: 9px;
   padding: 9px;
   /* color: aliceblue; */
-
 }
 
 .main-menu a {
@@ -39,7 +36,6 @@ body {
 .main-menu a:hover {
   color: #5980a8;
 }
-
 
 /* =============================== */
 

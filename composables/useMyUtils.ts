@@ -1,12 +1,22 @@
 export default function MyUtils() {
-  const a = ref("hello world");
+  /**
+   *
+   * @param str
+   */
 
-  function set(value: string) {
-    a.value = value;
+  function prettyText(str: string) {
+    return str
+      .split(" ")
+      .map((elem) =>
+        elem
+          .split("")
+          .map((elem, i) => (i == 0 ? elem.toUpperCase() : elem))
+          .join(""),
+      )
+      .join(".");
   }
 
   return {
-    a,
-    set,
+    prettyText,
   };
 }
