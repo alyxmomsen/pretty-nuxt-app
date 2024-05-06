@@ -114,3 +114,16 @@ form button[type="submit"] {
 .flex-row {
   flex-direction: row;
 }
+
+/* ===================== */
+/* button */
+
+button {
+  padding: 9px;
+  border-radius: 3px;
+  background-color: #5d522e;
+  border: 1px solid #bd7e5d;
+  cursor: pointer;
+  width: max-content;
+  margin: 9px;
+}

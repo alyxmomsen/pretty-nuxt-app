@@ -32,6 +32,17 @@ export default function useAxiosssss(port: string | number) {
   const responseMessage = ref<string | null>(null);
   const custom_response_status = ref<boolean | null>(null);
 
+
+  async function checkNotifycations () {
+    
+    axios.post(url + '/api/notifycations' , {
+      headers:{
+        Authorization:null ,
+      }
+    });
+
+  }
+
   async function send_post_request(
     endpoint: string,
     data: { username?: string; email: string; password: string },
@@ -109,7 +120,7 @@ export default function useAxiosssss(port: string | number) {
                 respnsed_data.payload.content.data,
               );
 
-              console.log("local storage", localStorage);
+              // console.log("local storage", localStorage);
             }
           }
         }

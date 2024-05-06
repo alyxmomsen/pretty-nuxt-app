@@ -1,22 +1,44 @@
-<template>
-    <div>
-        <h1>{{ useMyUtils().prettyText('the my account') }}</h1>
-        <div>hello</div>
-    </div>
-</template>
-
 <script setup lang="ts">
 
-// onBeforeMount(() => {
-    
-//     navigateTo('/');
+// onMounted(() => {
+
 // });
 
-navigateTo('/');
+const {checkIfAuth} = useIsAuth() ;
 
-// const { } = useAxios();
+
+
+// navigateTo('/');
+
+const title = computed(() => useMyUtils().prettyText('the my account') )
+
+// checkIfAuth();
+// console.log('isAuth' , isAuth.value);
+
+// if(!isAuth.value) {
+
+//     navigateTo('/');
+// }
+
+function onclick () {
+
+    localStorage.removeItem('my_access_token');
+    
+    reloadNuxtApp({
+        path:'/'
+    });
+}
+
 
 </script>
+
+<template>
+    <div>
+        <h1>{{ title }}</h1>
+        <div>hello</div>
+        <button @click="onclick">log out</button>
+    </div>
+</template>
 
 <style scoped>
 

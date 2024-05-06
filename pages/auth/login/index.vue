@@ -16,15 +16,19 @@ definePageMeta({
   layout: "default",
 });
 
-function updateInputs() {}
-
-function onSubmit(): void {
+async function onSubmit() {
   submitted.value = true;
 
-  send_post_request("/api/login", {
+  await send_post_request("/api/login", {
     email: input_email.value,
     password: input_password.value,
   });
+
+  if(data.value?.status) {
+
+    reloadNuxtApp();
+  }
+
 
   console.log(data.value);
 }
@@ -35,6 +39,7 @@ const { prettyText } = useMyUtils();
 <template>
   <h1>{{ prettyText("log-in form") }}</h1>
   <form @submit.prevent="onSubmit">
+    <button>{{ prettyText('click at this') }}</button>
     <CustomSpan
       @update="(payload) => (input_email = payload)"
       name="e-mail"

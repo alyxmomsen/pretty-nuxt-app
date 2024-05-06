@@ -9,53 +9,74 @@ interface ResponseData {
     }}
 }
 
-export default function f () {
-    // const a = Array(100).fill(0).map(elem => Math.floor(Math.random() * 2))
-    const random = () => Math.floor(Math.random() * 2) ;
-    const ifAuth = ref(random()); 
+export default function foo () {
 
+    const isAuth = ref<boolean>(false);
 
+    async function checkIfAuth () {
 
-
-    const axiosResponse = ref<null|AxiosResponse>(null);
+        // isAuth.value = false ;
         
-    
+        let response:AxiosResponse|null = null ;
 
-    async function isAuth () {
+        const token = localStorage.getItem('my_access_token');
 
-        const response = ref<null|AxiosResponse>(null);
+        // if(!token) return response ;
+
+        const m = 'hello from axios' ;
+
+        console.log(m , token);
 
         try {
 
-            response.value = await axios.get<ResponseData>('http://localhost:3001/api/auth-chek');
 
-            // console.log({data}); 
+           response = await axios.get<ResponseData>('http://localhost:3001/api/auth-check' , {
+            headers:{
+                Authorization:token
+            }
+           });
 
-            axiosResponse.value = response.value ;
-    
+           isAuth.value = true ;
+
         }
         catch (err) {
     
-            const { response:r } = err as AxiosError ;
-    
+            const { response:r } = err as AxiosError<ResponseData> ;
+
             if(r) {
-                response.value = r ;
-                axiosResponse.value = r ;
+
+                const data = r.data ;
+
+                console.log({data});
+
+                response = r ;
+
+                if(data.status) {
+
+                    isAuth.value = true ;
+                }
+                else {
+                    isAuth.value = false ;
+                }
+                
             }
+            else {
+                isAuth.value = false ;
+            }
+
+
+
+            
         }
 
-        if(response.value) {
+        // console.log({response});
 
-            console.log(response.value);
-            // alert();
-        }
-
+        return isAuth.value ;
     }
 
 
     return {
-        ifAuth ,
-        isAuth , 
-        axiosResponse,
+        checkIfAuth , 
+        isAuth ,
     }
 }
