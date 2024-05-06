@@ -24,9 +24,17 @@ async function onSubmit() {
     password: input_password.value,
   });
 
+  
+  /**
+   * reloading the app after request
+   */
+
   if(data.value?.status) {
 
-    reloadNuxtApp();
+    reloadNuxtApp({
+      path:'/account'
+    })
+    
   }
 
 

@@ -35,7 +35,6 @@ function onclick () {
 <template>
     <div>
         <h1>{{ title }}</h1>
-        <div>hello</div>
         <button @click="onclick">log out</button>
     </div>
 </template>
