@@ -126,4 +126,7 @@ button {
   cursor: pointer;
   width: max-content;
   margin: 9px;
+  font-size: 19px;
+  font-weight: bold ;
+  color: #bd7e5d;
 }

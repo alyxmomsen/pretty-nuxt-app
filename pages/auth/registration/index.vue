@@ -35,6 +35,7 @@ const { prettyText } = useMyUtils();
 <template>
   <h1>{{ prettyText("registration form") }}</h1>
   <form @submit.prevent="onSubmit">
+    <button>{{ prettyText('you registration') }}</button>
     <CustomSpan
       @update="(payload) => (input_email = payload)"
       name="e-mail"
