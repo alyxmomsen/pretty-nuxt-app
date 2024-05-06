@@ -16,7 +16,9 @@ console.log(props);
     <NuxtLink to="/gallery">gallery</NuxtLink>
     <NuxtLink to="/auth/registration">registration</NuxtLink>
     <NuxtLink to="/auth/login">login</NuxtLink>
-    <NuxtLink v-if="$props.isAuth" to="/account">account</NuxtLink>
+    <Suspense on-fallback="hello world">
+      <NuxtLink v-if="$props.isAuth" to="/account">account</NuxtLink>
+    </Suspense>
     <slot name="barfoo"></slot>
   </div>
 </template>
