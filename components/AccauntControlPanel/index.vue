@@ -7,28 +7,33 @@ function onclick() {
 }
 
 const props = defineProps({
-  // onDescribe:{
-  //     type:
-  // }
-
   ifNotificationIs: {
     type: Boolean,
+    required:true ,
   },
+  ifUsersLoading: {
+    type:Boolean , 
+    required:true ,
+  }
 });
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col">
     <button @click="onclick">log out</button>
     <button
       :disabled="!ifNotificationIs"
       :class="ifNotificationIs ? '' : 'btn-held'"
-      :style="!ifNotificationIs ? { cursor: 'default' } : ''"
       @click="$emit('describe', null)"
     >
       subscribe
     </button>
+    <button
+      :class="!ifUsersLoading ? '' : 'btn-held'"
+      :disabled="ifUsersLoading ? true : false"
+      @click="$emit('getUsers')"
+    >
+      Get Users
+    </button>
   </div>
 </template>
-
-<style scoped></style>

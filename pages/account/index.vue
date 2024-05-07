@@ -1,4 +1,18 @@
 <script setup lang="ts">
+const ifUsersLoading = ref(false);
+const ifUsersLoaded = ref(false);
+
+// AxiosError
+
+const baseURL = "http://localhost:3001";
+
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
 interface ResponsePayloadDataType<T = any> {
   status: boolean;
   message: string;
@@ -22,6 +36,8 @@ import axios, { Axios, AxiosError } from "axios";
 const ifNotify = ref(true);
 const notifications = ref<string[]>([]);
 
+const users = ref<User[]>([]);
+
 async function subscribe() {
   ifNotify.value = false;
 
@@ -29,7 +45,7 @@ async function subscribe() {
   try {
     const response = await axios.post<
       ResponsePayloadDataType<{ username: string }>
-    >("http://localhost:3001/api/notifications");
+    >(`${baseURL}/api/notifications`);
 
     const data = response.data;
 
@@ -49,31 +65,105 @@ async function subscribe() {
 }
 
 // onMounted(sendSubscribe);
-// navigateTo('/');
 
 const title = computed(() => useMyUtils().prettyText("the my account"));
 
-// const notyfication = computed()
+async function deleteUser(method: "get" | "post" | "delete", endpoint: string , userId:string) {
+  ifUsersLoading.value = true;
 
-// checkIfAuth();
-// console.log('isAuth' , isAuth.value);
+  const token = localStorage.getItem("my_access_token");
 
-// if(!isAuth.value) {
+  // console.log({token});
 
-//     navigateTo('/');
-// }
+  try {
+    const response = await axios.delete<ResponsePayloadDataType<User[]>>(
+      `${baseURL}/${endpoint}?userId=${userId}` ,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
 
-function a() {
-  alert();
+    if (response.data.payload) {
+      const responsedContentData = response.data.payload.content.data;
+
+      users.value = [...responsedContentData];
+    }
+    else {
+        
+        console.log(response.data.message);
+
+    }
+
+  } catch (e) {
+    const error = e as AxiosError<ResponsePayloadDataType<any>>;
+
+    const response = error.response;
+
+    if (response) {
+      const message = response.data.message;
+      console.log({ message });
+    }
+  }
+
+  ifUsersLoading.value = false;
+}
+
+async function getUsers(method: "get" | "post" | "delete", endpoint: string) {
+  ifUsersLoading.value = true;
+
+  const token = localStorage.getItem("my_access_token");
+
+  // console.log({token});
+
+  try {
+    const response = await axios[method]<ResponsePayloadDataType<User[]>>(
+      `${baseURL}/${endpoint}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+
+    if (response.data.payload) {
+      const responsedContentData = response.data.payload.content.data;
+
+      users.value = [...responsedContentData];
+    }
+  } catch (e) {
+    const error = e as AxiosError<ResponsePayloadDataType<any>>;
+
+    const response = error.response;
+
+    if (response) {
+      const message = response.data.message;
+      console.log({ message });
+    }
+  }
+
+  ifUsersLoading.value = false;
+}
+
+function test(value: any) {
+  alert(JSON.stringify(value));
 }
 </script>
 
 <template>
   <h1>{{ title }}</h1>
-  <AccauntControlPanel
-    v-on:describe="subscribe"
-    :if-notification-is="ifNotify"
-  />
+  <div class="regular-wrapper flex">
+    <div class="regular-wrapper">
+      <AccauntControlPanel
+        v-on:describe="subscribe"
+        v-on:getUsers="getUsers('get', 'api/users')"
+        :if-notification-is="ifNotify"
+        :if-users-loading="ifUsersLoading"
+      />
+    </div>
+    <AccauntUsersList v-on:delete_user="deleteUser('delete' , 'api/users' , $event)" :users-list="users" />
+  </div>
   <Notifycations v-if="notifications.length" :notifications="notifications" />
 </template>
 

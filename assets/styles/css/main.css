@@ -30,37 +30,9 @@ body {
 .regular-wrapper {
   border: 1px solid #293d52;
   border-radius: 3px;
-  background-color: #2e3d4b;
+  /* background-color: #2e3d4b; */
   padding: 9px;
 }
-
-/* ============================= */
-
-.main-menu {
-  display: flex;
-  gap: 9px;
-  padding: 9px;
-  /* color: aliceblue; */
-}
-
-.main-menu a {
-  font-size: 19px;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.main-menu a:link {
-  color: antiquewhite;
-}
-
-.main-menu a:visited {
-  color: antiquewhite;
-}
-.main-menu a:hover {
-  color: #5980a8;
-}
-
-/* =============================== */
 
 form {
   display: flex;
@@ -156,4 +128,34 @@ button {
   background-color: #202e3c;
   border: 1px solid #314152;
   color: #314152;
+  cursor: default;
 }
+
+/* ============================= */
+/* main menu */
+
+.main-menu {
+  display: flex;
+  gap: 9px;
+  padding: 9px;
+  /* color: aliceblue; */
+}
+
+.main-menu a {
+  font-size: 19px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.main-menu a:link {
+  color: antiquewhite;
+}
+
+.main-menu a:visited {
+  color: antiquewhite;
+}
+.main-menu a:hover {
+  color: #5980a8;
+}
+
+/* =============================== */
