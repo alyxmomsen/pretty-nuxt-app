@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   // devtools: { enabled: true },
   css: [
-    `~/assets/styles/css/main.css` 
+    `~/assets/styles/css/main.css`,
     // '~/assets/syles/scss/main.scss'
   ],
-  modules: ["@nuxt/image"]
+  modules: ["@nuxt/image", "@pinia/nuxt"],
 });

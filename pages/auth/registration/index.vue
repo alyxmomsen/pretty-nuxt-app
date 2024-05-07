@@ -29,17 +29,15 @@ function onSubmit(): void {
   });
 }
 
-function onsubmit () {
-
-}
+function onsubmit() {}
 
 const { prettyText } = useMyUtils();
 </script>
 
 <template>
   <h1>{{ prettyText("registration form") }}</h1>
-  <form @submit.prevent="onsubmit">
-    <button @submit.prevent="" >{{ prettyText('you registration') }}</button>
+  <form @submit.prevent="onSubmit">
+    <button>{{ prettyText("you registration") }}</button>
     <CustomSpan
       @update="(payload) => (input_email = payload)"
       name="e-mail"

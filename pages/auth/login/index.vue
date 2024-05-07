@@ -24,19 +24,15 @@ async function onSubmit() {
     password: input_password.value,
   });
 
-  
   /**
    * reloading the app after request
    */
 
-  if(data.value?.status) {
-
+  if (data.value?.status) {
     reloadNuxtApp({
-      path:'/account'
-    })
-    
+      path: "/account",
+    });
   }
-
 
   console.log(data.value);
 }
@@ -47,7 +43,7 @@ const { prettyText } = useMyUtils();
 <template>
   <h1>{{ prettyText("log-in form") }}</h1>
   <form @submit.prevent="onSubmit">
-    <button>{{ prettyText('click at this') }}</button>
+    <button>{{ prettyText("click at this") }}</button>
     <CustomSpan
       @update="(payload) => (input_email = payload)"
       name="e-mail"

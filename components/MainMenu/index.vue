@@ -6,20 +6,17 @@
 //   }
 // });
 
-
-const { checkIfAuth , isAuth } = useIsAuth();
+const { checkIfAuth, isAuth } = useIsAuth();
 
 // const isAuth = ref(false) ;
 
 onMounted(async () => {
-  
   await checkIfAuth();
 });
 
 // console.log('isAuth' , isAuth.value);
 
 // new Promise((resolve  , reject) => {});
-
 </script>
 
 <template>
@@ -28,12 +25,8 @@ onMounted(async () => {
     <NuxtLink to="/gallery">gallery</NuxtLink>
     <NuxtLink to="/auth/registration">registration</NuxtLink>
     <NuxtLink to="/auth/login">login</NuxtLink>
-    <NuxtLink v-if="isAuth"to="/account">account</NuxtLink>
+    <NuxtLink v-if="isAuth" to="/account">account</NuxtLink>
   </div>
 </template>
 
-<script>
-
-
-
-</script>
+<script></script>
