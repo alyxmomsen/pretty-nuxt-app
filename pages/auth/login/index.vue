@@ -38,6 +38,9 @@ async function onSubmit() {
 }
 
 const { prettyText } = useMyUtils();
+
+const {mailRegExp , passwordRegExp } = useMyRegExp();
+
 </script>
 
 <template>
@@ -45,6 +48,7 @@ const { prettyText } = useMyUtils();
   <form @submit.prevent="onSubmit">
     <button>{{ prettyText("click at this") }}</button>
     <CustomSpan
+    :isValid="(() => !!mailRegExp.exec(input_email))()"
       @update="(payload) => (input_email = payload)"
       name="e-mail"
       type="string"
@@ -54,6 +58,7 @@ const { prettyText } = useMyUtils();
       :forbidden_mesage="'wrong'"
     />
     <CustomSpan
+      :isValid="(() => !!passwordRegExp.exec(input_password))()"
       @update="(payload) => (input_password = payload)"
       name="password"
       type="string"

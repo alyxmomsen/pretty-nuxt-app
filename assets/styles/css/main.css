@@ -1,7 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: #5980a8;
   background-color: #202e3c;
 }
+
+h1 {
+  text-align: center;
+}
+
+/* img {
+  width: 100%
+} */
 
 /* ================================ */
 /* specific */
@@ -138,7 +150,7 @@ button {
   display: flex;
   gap: 9px;
   padding: 9px;
-  /* color: aliceblue; */
+  
 }
 
 .main-menu a {
@@ -159,3 +171,4 @@ button {
 }
 
 /* =============================== */
+

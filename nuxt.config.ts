@@ -5,5 +5,5 @@ export default defineNuxtConfig({
     `~/assets/styles/css/main.css`,
     // '~/assets/syles/scss/main.scss'
   ],
-  modules: ["@nuxt/image", "@pinia/nuxt"],
+  modules: ["@nuxt/image", "@pinia/nuxt", "@nuxt/ui"],
 });

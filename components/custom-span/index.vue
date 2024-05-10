@@ -26,17 +26,25 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  isValid: {
+    type:Boolean ,
+    required:true ,
+  }
 });
 
 const input_password = ref("");
+
+
+
 </script>
 
 <template>
   <div class="input-wrapper">
     <input
       @input="
-        (e: InputEvent) =>
+        (e: InputEvent) => {
           $emit('update', (e.currentTarget as HTMLInputElement).value)
+        }
       "
       :placeholder="$props.name"
       v-model="input_password"
@@ -46,9 +54,9 @@ const input_password = ref("");
     <span
       class="alert"
       :class="
-        input_password.length > 3 ? 'x-option-success' : 'x-option-warning'
+        (input_password.length > 1) && isValid ? 'x-option-success' : 'x-option-warning'
       "
-      >{{ input_password.length > 3 ? $props.success : $props.denied }}</span
+      >{{ input_password.length > 1 && isValid ? $props.success : $props.denied }}</span
     >
     <span v-if="$props.forbidden" :style="{ color: '#bf4242' }">{{
       $props.forbidden_mesage

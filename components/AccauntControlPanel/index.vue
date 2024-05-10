@@ -21,13 +21,15 @@ const props = defineProps({
 <template>
   <div class="flex flex-col">
     <button @click="onclick">log out</button>
+    <UProgress v-if="!ifNotificationIs" animation="elastic" />
     <button
       :disabled="!ifNotificationIs"
       :class="ifNotificationIs ? '' : 'btn-held'"
       @click="$emit('describe', null)"
     >
-      subscribe
+      {{ ifNotificationIs ? 'subscribe' : 'subsribed' }}
     </button>
+    <UProgress v-if="ifUsersLoading" animation="carousel" />
     <button
       :class="!ifUsersLoading ? '' : 'btn-held'"
       :disabled="ifUsersLoading ? true : false"

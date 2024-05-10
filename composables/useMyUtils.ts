@@ -1,7 +1,10 @@
 export default function MyUtils() {
+
+
   /**
-   *
+   *  
    * @param str
+   * @see http://www.hello.world
    */
 
   function prettyText(str: string) {
