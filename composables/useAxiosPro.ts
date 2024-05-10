@@ -13,8 +13,10 @@ interface ResponsedData {
 }
 
 export default function useaxiospro (baseURL:string) {
+
+    const url = "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app" ;
     
-    return new AxiosPro (baseURL , axios) ;
+    return new AxiosPro (/* baseURL */url , axios) ;
 }
 
 class AxiosPro {

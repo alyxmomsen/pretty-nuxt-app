@@ -20,10 +20,10 @@ export default function useAxiosssss(port: string | number) {
 
   const PRODUCTION_MODE = process.env.PRODUCTION_MODE;
 
-  const url =
-    PRODUCTION_MODE && PRODUCTION_MODE === "true"
-      ? "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
-      : `http://localhost:${port}`;
+  const url = "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app" ;
+    // PRODUCTION_MODE && PRODUCTION_MODE === "true"
+    //   ? "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
+    //   : `http://localhost:${port}`;
 
   console.log("PRODUCTION_MODE", PRODUCTION_MODE, url);
 
