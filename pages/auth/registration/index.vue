@@ -10,7 +10,7 @@ const submitted = ref(false);
 
 // ==============================================
 
-const myAxiosPro = useAxiosPro('http://localhost:3001');
+const myAxiosPro = useAxiosPro();
 
 function tryRegistration () {
 

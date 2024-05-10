@@ -4,8 +4,7 @@ const ifUsersLoaded = ref(false);
 
 // AxiosError
 
-const baseURL = "http://localhost:3001";
-const url = "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
+const baseURL = useSwitch();
 
 interface User {
   id: string;
@@ -42,11 +41,11 @@ const users = ref<User[]>([]);
 async function subscribe() {
   ifNotify.value = false;
 
-  console.log("on mounted");
+  // console.log("on mounted");
   try {
     const response = await axios.post<
       ResponsePayloadDataType<{ username: string }>
-    >(`${/* baseURL */url}/api/notifications`);
+    >(`${baseURL.value}/api/notifications`);
 
     const data = response.data;
 
@@ -60,6 +59,11 @@ async function subscribe() {
     console.log({ data });
   } catch (e) {
     const err = e as AxiosError;
+
+    // test
+    ifNotify.value = true ;
+
+    console.log({err});
 
     console.log("axios error");
   }
@@ -78,7 +82,7 @@ async function deleteUser(method: "get" | "post" | "delete", endpoint: string , 
 
   try {
     const response = await axios.delete<ResponsePayloadDataType<User[]>>(
-      `${/* baseURL */url}/${endpoint}?userId=${userId}` ,
+      `${baseURL.value}/${endpoint}?userId=${userId}` ,
       {
         headers: {
           Authorization: token,
@@ -120,7 +124,7 @@ async function getUsers(method: "get" | "post" | "delete", endpoint: string) {
 
   try {
     const response = await axios[method]<ResponsePayloadDataType<User[]>>(
-      `${/* baseURL */url}/${endpoint}`,
+      `${baseURL.value}/${endpoint}`,
       {
         headers: {
           Authorization: token,

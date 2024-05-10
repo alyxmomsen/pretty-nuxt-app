@@ -15,25 +15,16 @@ interface ResponseData {
  * @returns
  */
 export default function useAxiosssss(port: string | number) {
-  //   const url_to_vercel =
-  // "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app";
 
-  const PRODUCTION_MODE = process.env.PRODUCTION_MODE;
-
-  const url = "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app" ;
-    // PRODUCTION_MODE && PRODUCTION_MODE === "true"
-    //   ? "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app"
-    //   : `http://localhost:${port}`;
-
-  console.log("PRODUCTION_MODE", PRODUCTION_MODE, url);
-
+  const baseURL = useSwitch();
+  
   const responsedData = ref<ResponseData | null>(null);
   const errorSubject = ref<string | null>(null);
   const responseMessage = ref<string | null>(null);
   const custom_response_status = ref<boolean | null>(null);
 
   async function checkNotifycations() {
-    axios.post(url + "/api/notifycations", {
+    axios.post(baseURL.value + "/api/notifycations", {
       headers: {
         Authorization: null,
       },
@@ -52,7 +43,7 @@ export default function useAxiosssss(port: string | number) {
 
     try {
       const response = await axios.post<ResponseData>(
-        url + endpoint,
+        baseURL.value + endpoint,
         data,
         options,
       );

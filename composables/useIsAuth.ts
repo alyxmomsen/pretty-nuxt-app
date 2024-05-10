@@ -12,9 +12,10 @@ interface ResponseData {
   };
 }
 
-const url = "https://epress-rest-server-ror-pretty-nuxt-app.vercel.app" ;
-
 export default function foo() {
+
+  const baseURL = useSwitch();
+
   const isAuth = ref<boolean>(false);
 
   async function checkIfAuth() {
@@ -32,7 +33,7 @@ export default function foo() {
 
     try {
       response = await axios.get<ResponseData>(
-        `${url}/api/auth-check`,
+        `${baseURL.value}/api/auth-check`,
         {
           headers: {
             Authorization: token,
