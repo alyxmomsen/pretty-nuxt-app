@@ -34,8 +34,6 @@ const props = defineProps({
 
 const input_password = ref("");
 
-
-
 </script>
 
 <template>

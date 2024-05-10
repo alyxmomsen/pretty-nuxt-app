@@ -1,9 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+// &lt; &gt;
+
+</script>
 
 <template>
-  <h1>default layout</h1>
+  <h1>&lt;default layout&gt;</h1>0
   <MainMenu />
-  <div></div>
+  <div>
+
+  </div>
   <slot name="default"></slot>
   <pre></pre>
 </template>

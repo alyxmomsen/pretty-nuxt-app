@@ -4,6 +4,10 @@ const ifUsersLoaded = ref(false);
 
 // AxiosError
 
+const axiosPro = useAxiosPro() ;
+
+
+
 const baseURL = useSwitch();
 
 interface User {
@@ -73,7 +77,7 @@ async function subscribe() {
 
 const title = computed(() => useMyUtils().prettyText("the my account"));
 
-async function deleteUser(method: "get" | "post" | "delete", endpoint: string , userId:string) {
+async function deleteUser(endpoint: string , userId:string) {
   ifUsersLoading.value = true;
 
   const token = localStorage.getItem("my_access_token");
@@ -161,13 +165,13 @@ function test(value: any) {
   <div class="regular-wrapper flex">
     <div class="regular-wrapper">
       <AccauntControlPanel
-        v-on:describe="subscribe"
+        v-on:subscribe="subscribe"
         v-on:getUsers="getUsers('get', 'api/users')"
         :if-notification-is="ifNotify"
         :if-users-loading="ifUsersLoading"
       />
     </div>
-    <AccauntUsersList v-on:delete_user="deleteUser('delete' , 'api/users' , $event)" :users-list="users" />
+    <AccauntUsersList v-on:delete_user="deleteUser('api/users' , $event)" :users-list="users" />
   </div>
   <Notifycations v-if="notifications.length" :notifications="notifications" />
 </template>

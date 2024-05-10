@@ -5,7 +5,7 @@ function onclick() {
     path: "/",
   });
 }
-
+  
 const props = defineProps({
   ifNotificationIs: {
     type: Boolean,
@@ -25,7 +25,7 @@ const props = defineProps({
     <button
       :disabled="!ifNotificationIs"
       :class="ifNotificationIs ? '' : 'btn-held'"
-      @click="$emit('describe', null)"
+      @click="$emit('subscribe', null)"
     >
       {{ ifNotificationIs ? 'subscribe' : 'subsribed' }}
     </button>
