@@ -83,16 +83,18 @@ class AxiosPro {
 
     
 
-    async delete(endPoint:string , paramsString:paramsString[]) {
+    async delete(endPoint:string , params:paramsString[]) {
 
+        let paramsString = '' ;
 
+        if(params.length) {
+            params.forEach((elem , i) => {
+                paramsString += `${i > 0 ? '&' : '?'}${elem[0]}=${elem[1]}` ;
+            });
+        }
 
         try {
-            const response = await axios.delete<ResponsedData>(`${this.baseURL}/${endPoint}` , {
-                data:{
-                    hell:'yeah' ,
-                }
-            });
+            const response = await axios.delete<ResponsedData>(`${this.baseURL}/${endPoint}${paramsString}`);
 
             console.log(response.data) ;
 
