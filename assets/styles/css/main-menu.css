@@ -1,0 +1,15 @@
+
+.main-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+} 
+
+.main-menu a {
+    transition:all .2s ease-out
+}
+
+.main-menu a:hover {
+    background-color: #158030;
+    color: whitesmoke;
+}

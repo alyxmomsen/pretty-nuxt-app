@@ -64,7 +64,7 @@ const { prettyText } = useMyUtils();
   <h1>{{ prettyText("registration form") }}</h1>
   <form @submit.prevent="tryRegistration">
     <UProgress v-if="myAxiosPro.ifInProcess.value" animation="carousel" />
-    <button>{{ prettyText("you registration") }}</button>
+    <button class="button-13">{{ prettyText("you registration") }}</button>
     <CustomSpan
       :isValid="(() => !!mailRegExp.exec(input_email))()"
       @update="(payload) => {
@@ -99,7 +99,7 @@ const { prettyText } = useMyUtils();
       :forbidden="errorSubject && errorSubject === 'username' ? true : false"
       :forbidden_mesage="'already in use'"
     />
-    <button type="submit">submit button</button>
+    <button style="visibility: hidden;" type="submit">submit button</button>
   </form>
   <div v-if="myAxiosPro.responsedData.value?.status"> {{ myAxiosPro.responsedData.value.message }}</div>
 </template>

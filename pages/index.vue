@@ -6,6 +6,10 @@ definePageMeta({
   // layout:false
 });
 
+const av2 = useAxiosV2();
+
+console.log({av2});
+
 const responsed = ref<null|string>(null);
 
 // defined in nuxt.config.ts
@@ -21,7 +25,9 @@ console.log({rtc})
     {{ responsed }}
     <h1>index</h1>
     <div>
-      {{ rtc }}
+      <pre>
+        {{ rtc }}
+      </pre>
     </div>
   </div>
 </template>

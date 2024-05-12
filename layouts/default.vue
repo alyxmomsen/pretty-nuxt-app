@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <h1>&lt;default layout&gt;</h1>0
+  <h1>&lt;default layout&gt;</h1>
   <MainMenu />
   <div>
 
