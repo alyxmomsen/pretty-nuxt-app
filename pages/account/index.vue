@@ -184,7 +184,7 @@ function test(value: any) {
 
 <template>
   <h1>{{ title }}</h1>
-  <div class="regular-wrapper flex">
+  <div class="wrapper">
     <div class="regular-wrapper">
       <AccauntControlPanel
         v-on:subscribe="subscribe"
