@@ -1,18 +1,16 @@
+
+
+
 * {
   box-sizing: border-box;
   border-width: 1px;
   /* border-color: ; */
   border-radius: 3px;
+  overflow-wrap: break-word;
 }
 
 body {
-  background-color: rebeccapurple;
-}
-
-.grid {
-  display: grid;
-  gap: 19px;
-  grid-template-columns: repeat(4 , 1fr);
+  background-color: #0a121e;
 }
 
 /* CSS */

@@ -1,6 +1,6 @@
 <template>
   <div v-if="$props.usersList.length" class="wrapper grid"><!-- flex wrap -->
-    <div :class="user.isDeleted ? 'marked-to-delete' : ''" class="regular-wrapper m-9" v-for="user of $props.usersList">
+    <div :class="user.isDeleted ? 'marked-to-delete' : ''" class="" v-for="user of $props.usersList">
       <div>{{ user.isDeleted}}</div>
       <div>{{ user.id }}</div>
       <div>{{ user.username }}</div>

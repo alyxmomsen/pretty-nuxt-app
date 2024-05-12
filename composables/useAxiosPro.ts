@@ -12,6 +12,7 @@ interface ResponsedData {
     }|null
 }
 
+
 export default function useaxiospro () {
 
     const baseURL = useSwitch();
@@ -32,6 +33,7 @@ class AxiosPro {
     ifError = ref(false) ;
     ifFinite = ref(false) ;
 
+    
     async post(endPoint:string , body:any) {
 
         this.ifInProcess.value = true ;
