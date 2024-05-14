@@ -185,7 +185,7 @@ function test(value: any) {
 <template>
   <h1>{{ title }}</h1>
   <div class="wrapper">
-    <div class="regular-wrapper">
+    <div class="wrapper">
       <AccauntControlPanel
         v-on:subscribe="subscribe"
         v-on:getUsers="getUsers('get', 'api/users')"

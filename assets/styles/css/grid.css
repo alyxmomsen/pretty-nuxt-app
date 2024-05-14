@@ -1,9 +1,11 @@
 .grid {
     display: grid;
-    gap: 19px;
+    gap: 9px;
     grid-template-columns: repeat(auto-fill , minmax(200px , 300px));
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
     /* grid-auto-columns: minmax(200px , 300px); */
     grid-auto-rows: auto;
     /* grid-template-rows: ; */
+    /* align-content: center; */
   }

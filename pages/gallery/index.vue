@@ -46,12 +46,13 @@ function f() {
   <div>
     <h1>{{ prettyText("the pretty gallery") }}</h1>
     <div class="wrapper grid">
-      <NuxtImg
-        @click="''"
-        width="100%"
-        v-for="image in images.images"
-        :src="'/' + image.src"
-      />
+      <div v-for="image in images.images" class="img-container">
+        <NuxtImg
+          @click="''"
+          width="100%"
+          :src="'/' + image.src"
+        />
+      </div>
     </div>
   </div>
 </template>

@@ -78,4 +78,6 @@ form .input-wrapper input {
   background-color: #0a121e;
 }
 
-
+span {
+  padding: 3px;
+}

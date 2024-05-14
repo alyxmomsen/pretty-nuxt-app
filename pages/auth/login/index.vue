@@ -46,7 +46,7 @@ const {mailRegExp , passwordRegExp } = useMyRegExp();
 <template>
   <h1>{{ prettyText("log-in form") }}</h1>
   <form @submit.prevent="onSubmit">
-    <button>{{ prettyText("click at this") }}</button>
+    <button class="button-13" >{{ prettyText("click at this") }}</button>
     <CustomSpan
     :isValid="(() => !!mailRegExp.exec(input_email))()"
       @update="(payload) => (input_email = payload)"
@@ -67,7 +67,7 @@ const {mailRegExp , passwordRegExp } = useMyRegExp();
       :forbidden="errorSubject && errorSubject === 'password' ? true : false"
       :forbidden_mesage="'wrong'"
     />
-    <button type="submit">submit button</button>
+    <button :style="{visibility:'hidden'}" type="submit">submit button</button>
   </form>
   <h3
     v-if="responseMessage"

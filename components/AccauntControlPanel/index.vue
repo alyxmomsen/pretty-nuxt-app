@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="wrapper main-menu">
     <button class="button-13"@click="onclick">log out</button>
     <UProgress v-if="!ifNotificationIs" animation="elastic" />
     <button
